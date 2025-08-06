@@ -3,88 +3,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react';
 
-const transactions = [
-  {
-    id: 1,
-    description: 'Grocery Shopping - BigBazaar',
-    amount: -2500,
-    category: 'Food',
-    date: '2024-08-05',
-    type: 'expense'
-  },
-  {
-    id: 2,
-    description: 'Salary Credit',
-    amount: 85000,
-    category: 'Income',
-    date: '2024-08-01',
-    type: 'income'
-  },
-  {
-    id: 3,
-    description: 'Flight Booking - SpiceJet',
-    amount: -8500,
-    category: 'Travel',
-    date: '2024-08-04',
-    type: 'expense'
-  },
-  {
-    id: 4,
-    description: 'Online Shopping - Amazon',
-    amount: -3200,
-    category: 'Shopping',
-    date: '2024-08-03',
-    type: 'expense'
-  },
-  {
-    id: 5,
-    description: 'Restaurant Bill - Cafe Coffee Day',
-    amount: -750,
-    category: 'Food',
-    date: '2024-08-05',
-    type: 'expense'
-  },
-  {
-    id: 6,
-    description: 'Uber Ride',
-    amount: -350,
-    category: 'Travel',
-    date: '2024-08-04',
-    type: 'expense'
-  },
-  {
-    id: 7,
-    description: 'Movie Tickets - PVR',
-    amount: -800,
-    category: 'Entertainment',
-    date: '2024-08-03',
-    type: 'expense'
-  },
-  {
-    id: 8,
-    description: 'Freelance Payment',
-    amount: 15000,
-    category: 'Income',
-    date: '2024-08-02',
-    type: 'income'
-  },
-  {
-    id: 9,
-    description: 'Petrol - HP Gas Station',
-    amount: -2000,
-    category: 'Other',
-    date: '2024-08-01',
-    type: 'expense'
-  },
-  {
-    id: 10,
-    description: 'Book Purchase - Flipkart',
-    amount: -500,
-    category: 'Shopping',
-    date: '2024-08-01',
-    type: 'expense'
-  }
-];
+
 
 const getCategoryColor = (category) => {
   const colors = {
@@ -98,7 +17,7 @@ const getCategoryColor = (category) => {
   return colors[category] || 'bg-muted text-muted-foreground';
 };
 
-export const TransactionList = () => {
+export const TransactionList = ({ transactions = [] }) => {
   return (
     <Card className="bg-gradient-card border-border shadow-medium">
       <CardHeader>

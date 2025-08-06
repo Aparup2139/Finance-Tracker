@@ -1,12 +1,7 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const expenseData = [
-  { name: 'Food', value: 25000, color: 'hsl(var(--chart-food))' },
-  { name: 'Travel', value: 15000, color: 'hsl(var(--chart-travel))' },
-  { name: 'Shopping', value: 12000, color: 'hsl(var(--chart-shopping))' },
-  { name: 'Other', value: 8000, color: 'hsl(var(--chart-other))' }
-];
+
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -38,8 +33,13 @@ const CustomLegend = (props) => {
   );
 };
 
-export const ExpenseChart = () => {
-  const totalExpenses = expenseData.reduce((sum, item) => sum + item.value, 0);
+export const ExpenseChart = ({ expenseData = [] }) => {
+  const colors = ['hsl(var(--chart-food))', 'hsl(var(--chart-travel))', 'hsl(var(--chart-shopping))', 'hsl(var(--chart-other))'];
+  const dataWithColors = expenseData.map((item, index) => ({
+    ...item,
+    color: colors[index % colors.length]
+  }));
+  const totalExpenses = dataWithColors.reduce((sum, item) => sum + item.value, 0);
 
   return (
     <Card className="bg-gradient-card border-border shadow-medium">
