@@ -1,13 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
+export default {
+  darkMode: "class",
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/**/*.{js,ts,jsx,tsx,mdx}', // This now correctly includes .jsx files
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -55,21 +52,12 @@ module.exports = {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
         },
-        warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))",
-        },
-        info: {
-          DEFAULT: "hsl(var(--info))",
-          foreground: "hsl(var(--info-foreground))",
-        },
-        chart: {
-          food: "hsl(var(--chart-food))",
-          travel: "hsl(var(--chart-travel))",
-          shopping: "hsl(var(--chart-shopping))",
-          other: "hsl(var(--chart-other))",
-          income: "hsl(var(--chart-income))",
-        },
+        // Mapped from your provided config
+        'chart-food': "hsl(var(--chart-food))",
+        'chart-travel': "hsl(var(--chart-travel))",
+        'chart-shopping': "hsl(var(--chart-shopping))",
+        'chart-other': "hsl(var(--chart-other))",
+        'chart-income': "hsl(var(--chart-income))",
       },
       borderRadius: {
         lg: "var(--radius)",

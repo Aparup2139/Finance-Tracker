@@ -26,7 +26,7 @@ export const LoginPage = () => {
 
     try {
       // ... (fetch logic is identical)
-      const apiUrl = 'http://127.0.0.1:5000/login';
+      const apiUrl = `${import.meta.env.VITE_API_URL}/login`;
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -49,71 +49,53 @@ export const LoginPage = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
-      <div className="w-full max-w-md p-8 space-y-6 bg-card rounded-lg shadow-medium">
-        <h2 className="text-2xl font-bold text-center text-card-foreground">
-          Login to Your Account
-        </h2>
-        {/* Display success message if it exists */}
-        {successMessage && <p className="text-sm text-center text-success">{successMessage}</p>}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* ... (Your form inputs for email and password are the same) ... */}
-          <div>
-            <label
-              htmlFor="email"
-              className="text-sm font-medium text-muted-foreground"
-            >
-              Email Address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 mt-1 text-card-foreground bg-input border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="password"
-              className="text-sm font-medium text-muted-foreground"
-            >
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 mt-1 text-card-foreground bg-input border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-2 text-white bg-gradient-primary rounded-md hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? 'Logging in...' : 'Login'}
-            </button>
-          </div>
-        </form>
-        {/* 2. Add the link to the signup page */}
-        <p className="text-sm text-center text-muted-foreground">
-          Don't have an account?{' '}
-          <Link to="/signup" className="font-medium text-primary hover:underline">
-            Sign Up
-          </Link>
-        </p>
-      </div>
+  <div className="flex items-center justify-center min-h-screen bg-background p-4">
+    <div className="w-full max-w-md p-8 space-y-6 bg-card border border-border rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-center text-card-foreground">
+        Login to Your Account
+      </h2>
+      {successMessage && <p className="text-sm text-center text-success">{successMessage}</p>}
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 bg-input border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="text-sm font-medium text-muted-foreground">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 bg-input border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+        {error && <p className="text-sm text-destructive">{error}</p>}
+        <div>
+          <button type="submit" disabled={isLoading} className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring disabled:opacity-50">
+            {isLoading ? 'Logging in...' : 'Login'}
+          </button>
+        </div>
+      </form>
+      <p className="text-sm text-center text-muted-foreground">
+        Don't have an account?{' '}
+        <Link to="/signup" className="font-medium text-primary hover:underline">
+          Sign Up
+        </Link>
+      </p>
     </div>
-  );
+  </div>
+);
 };

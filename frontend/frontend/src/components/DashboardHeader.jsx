@@ -1,7 +1,20 @@
 import { Button } from '@/components/ui/button';
-import { PlusIcon, SettingsIcon, BellIcon } from 'lucide-react';
+// 1. Import the LogOutIcon and useNavigate
+import { PlusIcon, LogOutIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export const DashboardHeader = () => {
+export const DashboardHeader = ({ onAddTransaction }) => {
+  // 2. Initialize the navigate function
+  const navigate = useNavigate();
+
+  // 3. Create the handleLogout function
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem('token');
+    // Redirect the user to the login page
+    navigate('/login');
+  };
+
   return (
     <div className="flex items-center justify-between mb-8">
       <div>
@@ -13,15 +26,13 @@ export const DashboardHeader = () => {
         </p>
       </div>
       <div className="flex items-center gap-3">
-        <Button variant="outline" size="sm" className="gap-2">
-          <BellIcon className="w-4 h-4" />
-          Notifications
+        {/* 4. The old buttons are removed and the new Logout button is added */}
+        <Button onClick={handleLogout} variant="outline" size="sm" className="gap-2">
+          <LogOutIcon className="w-4 h-4" />
+          Logout
         </Button>
-        <Button variant="outline" size="sm" className="gap-2">
-          <SettingsIcon className="w-4 h-4" />
-          Settings
-        </Button>
-        <Button className="gap-2 bg-gradient-primary hover:opacity-90">
+        
+        <Button onClick={onAddTransaction} className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
           <PlusIcon className="w-4 h-4" />
           Add Transaction
         </Button>
